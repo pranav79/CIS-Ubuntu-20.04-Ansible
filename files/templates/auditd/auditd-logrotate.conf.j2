@@ -1,0 +1,13 @@
+# auditd-logrotate.conf.j2
+/var/log/audit/audit.log {
+    daily
+    missingok
+    notifempty
+    compress
+    delaycompress
+    sharedscripts
+    postrotate
+        /usr/bin/killall -HUP rsyslogd
+    endscript
+}
+
