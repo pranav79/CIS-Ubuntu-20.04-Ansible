@@ -1,0 +1,13 @@
+# rsyslog-auditd.conf.j2
+if $programname == 'audit' then {
+    action(type="omfwd"
+            target="{{ remoteSyslog.host }}"
+            port="{{ remoteSyslog.port }}"
+            protocol="{{ remoteSyslog.protocol }}"
+            action.resumeRetryCount="100"
+            queue.type="LinkedList"
+            queue.size="1000"
+    )
+    stop
+}
+
